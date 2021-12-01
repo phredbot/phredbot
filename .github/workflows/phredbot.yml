@@ -15,7 +15,9 @@ jobs:
     - name: beep
       run: |-
         echo "- $(date --utc --iso-8601=seconds)" >>README.md
+        git config user.name phredbot
+        git config user.email phredbot@gmail.com
         git add --all
-        git commit --author="phredbot <phredbot@gmail.com>" -m "beep"
+        git commit -m "beep"
     - name: boop
       run: git push
