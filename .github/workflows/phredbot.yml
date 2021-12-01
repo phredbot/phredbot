@@ -1,0 +1,21 @@
+name: phredbot
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron:  '*/5 * * * *'
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: beep
+      run: |-
+        echo "- $(date --utc --iso-8601=seconds)" >>README.md
+        git add --all
+        git commit --author="phredbot <phredbot@gmail.com>" -m "beep"
+    - name: boop
+      run: git push
